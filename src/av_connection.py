@@ -9,3 +9,8 @@ class AVConnection:
     def get_daily_stock_data(self, symbol, date):
         data, _ = self.ts.get_daily(symbol=symbol, outputsize='full')
         return data.get(date)
+    
+    def get_recent_stock_data(self, symbol, points):
+        data, _ = self.ts.get_daily(symbol=symbol, outputsize='compact')
+        recent_data = list(data.items())[-points:]
+        return recent_data
